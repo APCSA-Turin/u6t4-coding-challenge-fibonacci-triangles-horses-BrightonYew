@@ -20,9 +20,7 @@ public class HorseBarn {
      */
     public HorseBarn(Horse[] sampleStalls) {
         /* to be implemented in part (a) */
-        for (int i = 0; i < sampleStalls.length; i++) {
-            stalls[i] = sampleStalls[i];
-        }
+        stalls = sampleStalls;
     }
 
     /** Getter/accessor method for stalls
@@ -37,7 +35,9 @@ public class HorseBarn {
         /* to be implemented in part (b) */
         String str = "";
         for (int i = 0; i < stalls.length; i++) {
+            if (stalls[i] != null) {
             str += stalls[i].getName() + " in stall " + i + "\n";
+            }
         }
         return str;
     }
@@ -65,7 +65,7 @@ public class HorseBarn {
     public int findHorseStall(String name) {
         /* to be implemented in part (d) */
         for (int i = 0; i < stalls.length; i++) {
-            if (stalls[i].equals(name)) {
+            if (stalls[i] != null && name.equals(stalls[i].getName())) {
                 return i;
             }
         }
@@ -82,13 +82,13 @@ public class HorseBarn {
         Horse[] newarray = new Horse[stalls.length];
         int numofSpaces = 0;
         for (int i = 0; i < stalls.length; i++) {
-            if (stalls[i].equals(null)) {
+            if (stalls[i] == null) {
                 numofSpaces++;
             } else {
-                newarray[i] = stalls[i + numofSpaces];
+                newarray[i - numofSpaces] = stalls[i];
             }
         }
-
+        System.out.println(numofSpaces);
         stalls = newarray;
     }
 
